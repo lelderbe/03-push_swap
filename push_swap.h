@@ -13,6 +13,9 @@ typedef struct s_app {
 
 int		parse_args(t_app *e, int count, char **argv);
 
+void	recursion_sort(t_app *e);
+void	recursion_sort_v2(t_app *e);
+
 void	pa(t_app *e);
 void	pb(t_app *e);
 void	sa(t_app *e);

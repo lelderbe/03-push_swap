@@ -16,7 +16,11 @@ OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
-SRCS		= ${MAIN_SRCS} ${OPER_SRCS}
+ALGO_DIR	= algorithms/
+ALGO_SRCS	= recursion_sort.c
+ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
+
+SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS}
 
 HEADERS		= push_swap.h
 
@@ -28,7 +32,7 @@ LIBFT_DIR	= libft/
 
 LIBFT		= libft.a
 
-INCLUDES	= -I. -I${LIBFT_DIR} -I${OPER_DIR}
+INCLUDES	= -I. -I${LIBFT_DIR}
 
 CC			= gcc
 

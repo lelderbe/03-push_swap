@@ -20,23 +20,22 @@ static void	print_stack(t_dlist *lst)
 
 int	main(int argc, char *argv[])
 {
-	t_app	e;
+	t_app	*e;
 
-	//printf("size: %lu, e.a : %p, e.b : %p\n", sizeof(e), e.a, e.b);
-	init(&e);
-	if (parse_args(&e, argc - 1, argv + 1) == 0)
+	e = malloc(sizeof(*e));
+	if (!e)
+		exit(1);
+	//printf("size: %lu, e->a : %p, e->b : %p\n", sizeof(*e), e->a, e->b);
+	init(e);
+	//printf("size: %lu, e->a : %p, e->b : %p\n", sizeof(*e), e->a, e->b);
+	if (parse_args(e, argc - 1, argv + 1) == 0)
 	{
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	printf("a: "), print_stack(e.a), printf("b: "),	print_stack(e.b);
-	// do sort
-	pb(&e);
-	printf("a: "), print_stack(e.a), printf("b: "),	print_stack(e.b);
-	sa(&e);
-	printf("a: "), print_stack(e.a), printf("b: "),	print_stack(e.b);
-	pa(&e);
-
-	printf("a: "), print_stack(e.a), printf("b: "),	print_stack(e.b);
+	//printf("a: "), print_stack(e->a), printf("b: "), print_stack(e->b);
+	//recursion_sort(e);
+	recursion_sort_v2(e);
+	//printf("a: "), print_stack(e->a), printf("b: "),	print_stack(e->b);
 	return (0);
 }
