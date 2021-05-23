@@ -13,7 +13,7 @@
 MAIN_SRCS	= main.c parse.c
 
 OPER_DIR	= operations/
-OPER_SRCS	= swap.c push.c
+OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
 ALGO_DIR	= algorithms/
