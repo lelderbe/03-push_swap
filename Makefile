@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c
+MAIN_SRCS	= main.c parse.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c
@@ -28,7 +28,7 @@ LIBFT_DIR	= libft/
 
 LIBFT		= libft.a
 
-INCLUDES	= -I${LIBFT_DIR} -I${OPER_DIR}
+INCLUDES	= -I. -I${LIBFT_DIR} -I${OPER_DIR}
 
 CC			= gcc
 
