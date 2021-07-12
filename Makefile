@@ -6,11 +6,11 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:47:19 by lelderbe          #+#    #+#              #
-#    Updated: 2021/05/16 18:14:43 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/07/12 11:34:00 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c parse.c
+MAIN_SRCS	= main.c parse.c utils.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
@@ -38,7 +38,7 @@ CC			= gcc
 
 RM			= rm -f
 
-CFLAGS		= #-Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 
 %.o:		%.c ${HEADERS}
 			${CC} ${CFLAGS} ${INCLUDES} -c $< -o ${<:.c=.o}

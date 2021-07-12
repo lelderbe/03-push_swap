@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/12 11:10:23 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/12 13:51:48 by lelderbe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void init(t_app **e)
@@ -29,7 +41,7 @@ int	main(int argc, char *argv[])
 	t_app	*e;
 
 	init(&e);
-	if (parse_args(e, argc - 1, argv + 1) == 0)
+	if (!parse_args(e, argc - 1, argv + 1))
 	{
 		ft_putendl_fd("Error", 2);
 		return (1);

@@ -1,45 +1,53 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/12 13:18:49 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/12 13:37:43 by lelderbe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int	is_digits_only(const char *s)
-{
-	if (!(*s == '+' || *s == '-' || ft_isdigit(*s)))
-		return (0);
-	s++;
-	while (*s)
-	{
-		if (!ft_isdigit(*s))
-			return (0);
-		s++;
-	}
-	return (1);
-}
+#include "push_swap.h"
 
 static int	*make_content(int value)
 {
 	int	*result;
     
 	result = malloc(sizeof(*result));
-	//if (!result)
-	//   process_error();
+	if (!result)
+		return (FAIL);
 	*result = value;
 	return (result);
 }
 
-int add_value(t_dlist **lst, int value)
+static int	add_value(t_dlist **lst, int value)
 {
 	int		*content;
 	t_dlist	*elem;
 
 	content = make_content(value);
-	//if (!content)
-	//	return (1);
+	if (!content)
+		return (FAIL);
 	elem = ft_dlstnew(content);
-	//if (!elem)
-	//	process_syserror();
+	if (!elem)
+		return (FAIL);
 	ft_dlstadd_back(lst, elem);
-	return (0);
+	return (OK);
 }
 
+static int	find_value(t_dlist *lst, int value)
+{
+	while (lst)
+	{
+		if (*(int *)lst->content == value)
+			return (OK);
+		lst = lst->next;
+	}
+	return (FAIL);
+}
 
 int	parse_args(t_app *e, int count, char **argv)
 {
@@ -49,13 +57,11 @@ int	parse_args(t_app *e, int count, char **argv)
 	i = 0;
 	while (i < count)
 	{
-		if (!is_digits_only(argv[i]))
-			return (0);
-		value = ft_atoi(argv[i]);
-		// check doubles
-		// if everything is ok - add to stack
-		add_value(&e->a, value);
+		if (!(protected_atoi(argv[i], &value) && 
+			   !find_value(e->a, value) &&
+			   add_value(&e->a, value)))
+			return (FAIL);
 		i++;
 	}
-	return (1);
+	return (OK);
 }
