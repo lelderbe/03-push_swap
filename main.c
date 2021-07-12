@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:10:23 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 13:51:48 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/12 14:53:05 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ static void init(t_app **e)
 		exit(1);
 	ft_bzero(*e, sizeof(**e));
 	(*e)->print = 1;
+}
+
+int	exit_app(t_app *e, int code)
+{
+	ft_dlstclear(&e->b, free);
+	ft_dlstclear(&e->a, free);
+	exit(code);
 }
 
 static void	print_stack(t_dlist *lst)
@@ -44,14 +51,18 @@ int	main(int argc, char *argv[])
 	if (!parse_args(e, argc - 1, argv + 1))
 	{
 		ft_putendl_fd("Error", 2);
-		return (1);
+		exit_app(e, 1);
 	}
-	//print_stacks(e);
+	if ((!e->a || (e->a && is_sorted(e->a))))
+		exit_app(e, 0);
+	print_stacks(e);
 	//recursion_sort(e);
 	recursion_sort_v2(e);
 	//pb(e);
 	//pb(e);
 	//rrr(e);
-	//print_stacks(e);
-	return (0);
+	print_stacks(e);
+	//while(1);
+	exit_app(e, 0);
+	//return (0);
 }

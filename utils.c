@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:22:21 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 12:49:40 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/12 14:27:52 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ int	protected_atoi(const char *str, int *value)
 	if (*str != '\0')
 		return (FAIL);
 	*value = result * sign;
+	return (OK);
+}
+
+int	is_sorted(t_dlist *lst)
+{
+	while (lst)
+	{
+		if (lst->prev && (*(int *)lst->prev->content > *(int *)lst->content))
+			return (FAIL);
+		lst = lst->next;
+	}
 	return (OK);
 }
 
