@@ -6,7 +6,7 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:47:19 by lelderbe          #+#    #+#              #
-#    Updated: 2021/07/12 11:34:00 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/07/13 14:38:01 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
 ALGO_DIR	= algorithms/
-ALGO_SRCS	= recursion_sort.c
+ALGO_SRCS	= recursion_sort.c sort2.c
 ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
 
 SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS}

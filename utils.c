@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:22:21 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 14:27:52 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/13 15:10:12 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,71 @@ int	is_sorted(t_dlist *lst)
 		lst = lst->next;
 	}
 	return (OK);
+}
+
+int	get(t_dlist *lst, int index)
+{
+	int i;
+
+	i = 0;
+	while (lst && i < index)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (*(int *)lst->content);
+}
+
+int	size(t_dlist *lst)
+{
+	return (ft_dlstsize(lst));
+}
+
+int	max_index(t_dlist *lst)
+{
+	int value;
+	int index;
+	int i;
+
+	value = *(int *)lst->content;
+	index = 0;
+	//value = get(lst, 0);
+	lst = lst->next;
+	i = 1;
+	while (lst)
+	{
+		if (*(int *)lst->content > value)
+		{
+			value = *(int *)lst->content;
+			index = i;
+		}
+		lst = lst->next;
+		i++;
+	}
+	return (index);
+}
+
+int	min_index(t_dlist *lst)
+{
+	int value;
+	int index;
+	int i;
+
+	value = *(int *)lst->content;
+	index = 0;
+	lst = lst->next;
+	i = 1;
+	while (lst)
+	{
+		if (*(int *)lst->content < value)
+		{
+			value = *(int *)lst->content;
+			index = i;
+		}
+		lst = lst->next;
+		i++;
+	}
+	return (index);
 }
 
 /*

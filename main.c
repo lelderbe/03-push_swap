@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:10:23 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 14:53:05 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:05:55 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,22 @@ int	main(int argc, char *argv[])
 	}
 	if ((!e->a || (e->a && is_sorted(e->a))))
 		exit_app(e, 0);
-	print_stacks(e);
+	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
+	//print_stacks(e);
 	//recursion_sort(e);
-	recursion_sort_v2(e);
+	if (size(e->a) == 2)
+		sort2(e);
+	else if (size(e->a) == 3)
+		sort3(e);
+	else
+		sort_a_lot(e);
+		//recursion_sort_v2(e);
 	//pb(e);
 	//pb(e);
 	//rrr(e);
-	print_stacks(e);
+	//print_stacks(e);
 	//while(1);
+	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
 	exit_app(e, 0);
 	//return (0);
 }

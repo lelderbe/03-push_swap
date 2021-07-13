@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 14:28:01 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:01:35 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,16 @@ int		parse_args(t_app *e, int count, char **argv);
 void	print_stacks(t_app *e);
 int		protected_atoi(const char *str, int *value);
 int		is_sorted(t_dlist *lst);
+int		get(t_dlist *lst, int index);
+int		size(t_dlist *lst);
+int		min_index(t_dlist *lst);
+int		max_index(t_dlist *lst);
 
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);
+void	sort2(t_app *e);
+void	sort3(t_app *e);
+void	sort_a_lot(t_app *e);
 
 void	pa(t_app *e);
 void	pb(t_app *e);
