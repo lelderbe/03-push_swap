@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/13 16:01:35 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:00:01 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_app {
 	t_dlist		*a;
 	t_dlist		*b;
 	int			print;
+	int			rb;
+	int			rrb;
+	int			sb;
 }				t_app;
 
 int		parse_args(t_app *e, int count, char **argv);

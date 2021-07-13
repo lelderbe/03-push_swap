@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:22:21 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/13 15:10:12 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:59:50 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,36 @@ int	min_index(t_dlist *lst)
 	return (index);
 }
 
+/*
+int	min2_index(t_dlist *lst)
+{
+	int min1;
+	int min2;
+	int index;
+	int i;
+
+	if (*(int *)lst->content < *(int *)lst->next->content)
+	{
+		min1 = *(int *)lst->content;
+		min2 = *(int *)lst->next->content;
+	}
+	value = *(int *)lst->content;
+	index = 0;
+	lst = lst->next->next;
+	i = 2;
+	while (lst)
+	{
+		if (*(int *)lst->content < value)
+		{
+			value = *(int *)lst->content;
+			index = i;
+		}
+		lst = lst->next;
+		i++;
+	}
+	return (index);
+}
+*/
 /*
 int	check_atoi(char *s, int min, int max)
 {
