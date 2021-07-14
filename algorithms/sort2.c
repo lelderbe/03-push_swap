@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 14:35:09 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/13 17:46:33 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/14 17:26:27 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	sort2(t_app *e)
 
 void	sort3(t_app *e)
 {
-	int index;
-   
-	index = max_index(e->a);
+	int	index;
+
+	index = get_max_index(e->a);
 	if (index == 2)
 	{
 		sort2(e);
@@ -41,9 +41,9 @@ void	sort3(t_app *e)
 
 void	move_smallest_to_b(t_app *e)
 {
-	int index;
+	int	index;
 
-	index = min_index(e->a);
+	index = get_min_index(e->a);
 	if (index <= size(e->a) / 2)
 	{
 		while (index)
@@ -74,9 +74,9 @@ void	move_all_from_b_back(t_app *e)
 
 void	sort_a_lot(t_app *e)
 {
-	while (!is_sorted(e->a) || size(e->b) > 0)
+	while (!sorted(e->a) || size(e->b) > 0)
 	{
-		if (is_sorted(e->a))
+		if (sorted(e->a))
 			move_all_from_b_back(e);
 		else if (size(e->a) > 3)
 			move_smallest_to_b(e);
@@ -87,22 +87,3 @@ void	sort_a_lot(t_app *e)
 		}
 	}
 }
-/*
-void	sort_several(t_app *e)
-{
-	while (!is_sorted(e->a) || size(e->b) > 0)
-	{
-		if (is_sorted(e->a))
-			move_all_from_b_back(e);
-		else if (size(e->a) > 3)
-			move_smallest_to_b(e);
-		else
-		{
-			sort3(e);
-			move_all_from_b_back(e);
-		}
-	}
-
-}
-*/
-

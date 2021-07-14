@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/13 18:00:01 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/14 17:24:09 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ typedef struct s_app {
 	int			rb;
 	int			rrb;
 	int			sb;
+	t_dlist		*op;
 }				t_app;
 
 int		parse_args(t_app *e, int count, char **argv);
 void	print_stacks(t_app *e);
 int		protected_atoi(const char *str, int *value);
-int		is_sorted(t_dlist *lst);
+
+int		exist(t_dlist *lst, int value);
+int		add(t_dlist **lst, int value);
 int		get(t_dlist *lst, int index);
 int		size(t_dlist *lst);
-int		min_index(t_dlist *lst);
-int		max_index(t_dlist *lst);
+int		get_min_index(t_dlist *lst);
+int		get_max_index(t_dlist *lst);
+int		sorted(t_dlist *lst);
 
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);

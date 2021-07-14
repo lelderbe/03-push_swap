@@ -6,11 +6,11 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:47:19 by lelderbe          #+#    #+#              #
-#    Updated: 2021/07/13 14:38:01 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/07/14 17:03:58 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c parse.c utils.c
+MAIN_SRCS	= main.c parse.c utils.c list_operations.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c

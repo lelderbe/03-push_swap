@@ -6,16 +6,16 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:22:21 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/13 17:59:50 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/14 17:30:32 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int is_space(char c)
+static int	is_space(char c)
 {
-	if (c == ' ' || c == '\n' || c == '\t' ||
-			c == '\v' || c == '\f' || c == '\r')
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r')
 		return (OK);
 	return (FAIL);
 }
@@ -38,8 +38,8 @@ int	protected_atoi(const char *str, int *value)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
-		if ((sign > 0 && result > INT_MAX) ||
-			(sign < 0 && result > (INT_MAX + (long)1)))
+		if ((sign > 0 && result > INT_MAX)
+			|| (sign < 0 && result > (INT_MAX + (long)1)))
 			return (FAIL);
 		str++;
 	}
@@ -49,7 +49,7 @@ int	protected_atoi(const char *str, int *value)
 	return (OK);
 }
 
-int	is_sorted(t_dlist *lst)
+int	sorted(t_dlist *lst)
 {
 	while (lst)
 	{
@@ -59,7 +59,7 @@ int	is_sorted(t_dlist *lst)
 	}
 	return (OK);
 }
-
+/*
 int	get(t_dlist *lst, int index)
 {
 	int i;
@@ -124,7 +124,7 @@ int	min_index(t_dlist *lst)
 	}
 	return (index);
 }
-
+*/
 /*
 int	min2_index(t_dlist *lst)
 {
