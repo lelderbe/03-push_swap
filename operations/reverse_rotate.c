@@ -17,7 +17,8 @@ void	rra(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		ft_putendl_fd("rra", 1);
+		//ft_putendl_fd("rra", 1);
+		add(&e->ops, RRA);
 	if (ft_dlstsize(e->a) < 2)
 		return ;
 	tmp = e->a;
@@ -34,7 +35,8 @@ void	rrb(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		ft_putendl_fd("rrb", 1);
+		//ft_putendl_fd("rrb", 1);
+		add(&e->ops, RRB);
 	if (ft_dlstsize(e->b) < 2)
 		return ;
 	tmp = e->b;
@@ -48,7 +50,8 @@ void	rrb(t_app *e)
 
 void	rrr(t_app *e)
 {
-	ft_putendl_fd("rrr", 1);
+	//ft_putendl_fd("rrr", 1);
+	add(&e->ops, RRR);
 	e->print = 0;
 	rra(e);
 	e->print = 0;

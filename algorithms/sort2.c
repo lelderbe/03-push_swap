@@ -83,7 +83,7 @@ void	sort_a_lot(t_app *e)
 		else
 		{
 			sort3(e);
-			move_all_from_b_back(e);
+			//move_all_from_b_back(e);
 		}
 	}
 }

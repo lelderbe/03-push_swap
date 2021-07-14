@@ -17,7 +17,7 @@ OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
 ALGO_DIR	= algorithms/
-ALGO_SRCS	= recursion_sort.c sort2.c
+ALGO_SRCS	= recursion_sort.c sort2.c greater.c
 ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
 
 SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS}

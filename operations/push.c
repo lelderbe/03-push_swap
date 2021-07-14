@@ -16,7 +16,8 @@ void	pa(t_app *e)
 {
 	t_dlist	*tmp;
 
-	ft_putendl_fd("pa", 1);
+	//ft_putendl_fd("pa", 1);
+	add(&e->ops, PA);
 	if (!e->b)
 		return ;
 	tmp = e->b;
@@ -34,7 +35,8 @@ void	pb(t_app *e)
 {
 	t_dlist	*tmp;
 
-	ft_putendl_fd("pb", 1);
+	//ft_putendl_fd("pb", 1);
+	add(&e->ops, PB);
 	if (!e->a)
 		return ;
 	tmp = e->a;

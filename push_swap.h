@@ -21,25 +21,38 @@
 # define FAIL		0
 # define OK			1
 
+# define PA			0
+# define PB			1
+# define SA			2
+# define SB			3
+# define SS			4
+# define RA			5
+# define RB			6
+# define RR			7
+# define RRA		8
+# define RRB		9
+# define RRR		10
+
 //# define PRINT
 
 typedef struct s_app {
+	int			count;
 	t_dlist		*a;
 	t_dlist		*b;
 	int			print;
-	int			rb;
-	int			rrb;
-	int			sb;
-	t_dlist		*op;
+	int			*sorted;
+	t_dlist		*ops;
 }				t_app;
 
-int		parse_args(t_app *e, int count, char **argv);
+int		parse_args(t_app *e, char **argv);
 void	print_stacks(t_app *e);
 int		protected_atoi(const char *str, int *value);
+int		get_arr_index(t_app *e, int value);
 
 int		exist(t_dlist *lst, int value);
 int		add(t_dlist **lst, int value);
 int		get(t_dlist *lst, int index);
+int		get_index(t_dlist *lst, int value);
 int		size(t_dlist *lst);
 int		get_min_index(t_dlist *lst);
 int		get_max_index(t_dlist *lst);
@@ -50,6 +63,7 @@ void	recursion_sort_v2(t_app *e);
 void	sort2(t_app *e);
 void	sort3(t_app *e);
 void	sort_a_lot(t_app *e);
+void	sort_greater(t_app *e);
 
 void	pa(t_app *e);
 void	pb(t_app *e);

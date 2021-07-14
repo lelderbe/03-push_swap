@@ -62,6 +62,35 @@ int	get(t_dlist *lst, int index)
 	return (*(int *)lst->content);
 }
 
+int	get_index(t_dlist *lst, int value)
+{
+	int	i;
+	int	pos;
+	int	curr;
+	int	diff;
+
+	pos = -1;
+	diff = -1;
+	i = 0;
+	while (lst)
+	{
+		curr = *(int *)lst->content;
+		if (curr > value)
+		{
+			if (diff == -1 || diff > curr - value)
+			{
+				diff = curr - value;
+				pos = i;
+			}
+		}
+		if (pos == -1 && lst->prev && *(int *)lst->prev->content > curr)
+			pos = i;
+		lst = lst->next;
+		i++;
+	}
+	return (pos);
+}
+
 int	size(t_dlist *lst)
 {
 	return (ft_dlstsize(lst));

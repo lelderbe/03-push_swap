@@ -59,6 +59,21 @@ int	sorted(t_dlist *lst)
 	}
 	return (OK);
 }
+
+int	get_arr_index(t_app *e, int value)
+{
+	int	i;
+
+	i = 0;
+	while (i < e->count)
+	{
+		if (e->sorted[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 /*
 int	get(t_dlist *lst, int index)
 {

@@ -17,7 +17,8 @@ void	sa(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		ft_putendl_fd("sa", 1);
+		//ft_putendl_fd("sa", 1);
+		add(&e->ops, SA);
 	if (ft_dlstsize(e->a) < 2)
 		return ;
 	tmp = e->a;
@@ -36,7 +37,8 @@ void	sb(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		ft_putendl_fd("sb", 1);
+		//ft_putendl_fd("sb", 1);
+		add(&e->ops, SB);
 	if (ft_dlstsize(e->b) < 2)
 		return ;
 	tmp = e->b;
@@ -52,7 +54,8 @@ void	sb(t_app *e)
 
 void	ss(t_app *e)
 {
-	ft_putendl_fd("ss", 1);
+	//ft_putendl_fd("ss", 1);
+	add(&e->ops, SS);
 	e->print = 0;
 	sa(e);
 	e->print = 0;

@@ -23,14 +23,59 @@ static int	has_digit(const char *s)
 	return (FAIL);
 }
 
-int	parse_args(t_app *e, int count, char **argv)
+static void	array_sort(int *arr, int count)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < count)
+	{
+		j = 0;
+		while (j < count - 1 - i)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static int	make_sorted(t_app *e)
+{
+	int		i;
+	//t_dlist	*lst;
+
+	e->sorted = malloc(sizeof(*e->sorted) * e->count);
+	if (!e->sorted)
+		return (FAIL);
+	i = 0;
+	while (i < e->count)
+	{
+		//e->sorted[i] = *(int *)lst->content;
+		e->sorted[i] = get(e->a, i);
+		//printf("e->sorted[%d] : %d\n", i, e->sorted[i]);
+		i++;
+		//lst = lst->next;
+	}
+	array_sort(e->sorted, e->count);
+	return (OK);
+}
+
+int	parse_args(t_app *e, char **argv)
 {
 	int		i;
 	int		value;
 	char	*str;
 
 	i = 0;
-	while (i < count)
+	while (i < e->count)
 	{
 		str = ft_strtrim(argv[i], " ");
 		if (!(str
@@ -45,5 +90,7 @@ int	parse_args(t_app *e, int count, char **argv)
 		free(str);
 		i++;
 	}
+	if (!make_sorted(e))
+		return (FAIL);
 	return (OK);
 }
