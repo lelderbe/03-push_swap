@@ -77,7 +77,7 @@ int	get_index(t_dlist *lst, int value)
 	return (-1);
 }
 
-int	get_gr_index(t_dlist *lst, int value)
+int	get_insert_pos(t_dlist *lst, int value)
 {
 	int	i;
 	int	pos;

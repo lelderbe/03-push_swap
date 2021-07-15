@@ -33,7 +33,7 @@
 # define RRB		9
 # define RRR		10
 
-//# define PRINT
+# define PRINT
 
 typedef struct s_app {
 	int			count;
@@ -53,7 +53,7 @@ int		exist(t_dlist *lst, int value);
 int		add(t_dlist **lst, int value);
 int		get(t_dlist *lst, int index);
 int		get_index(t_dlist *lst, int value);
-int		get_gr_index(t_dlist *lst, int value);
+int		get_insert_pos(t_dlist *lst, int value);
 int		size(t_dlist *lst);
 int		get_min_index(t_dlist *lst);
 int		get_max_index(t_dlist *lst);
@@ -63,13 +63,16 @@ void	rotate(t_app *e, t_dlist *lst, int pos);
 //void	rotate_a(t_app *e, int pos);
 //void	rotate_b(t_app *e, int pos);
 void	move_smallest_top(t_app *e, t_dlist *lst);
+void	move_all_from_b_back(t_app *e);
 
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);
+void	recursion_sort_v3(t_app *e);
 void	sort2(t_app *e);
 void	sort3(t_app *e);
 void	sort_a_lot(t_app *e);
 void	sort_greater(t_app *e);
+void	sort_radix(t_app *e);
 
 void	pa(t_app *e);
 void	pb(t_app *e);

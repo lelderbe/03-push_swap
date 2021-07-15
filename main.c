@@ -94,13 +94,23 @@ int	main(int argc, char *argv[])
 		sort2(e);
 	else if (size(e->a) == 3)
 		sort3(e);
+	else if (size(e->a) < 50)
+		//sort_a_lot(e);
+		//sort_greater(e);
+		//recursion_sort(e);
+		//recursion_sort_v2(e);
+		recursion_sort_v3(e);
 	else
-		sort_greater(e);
+		sort_radix(e);
+		//sort_greater(e);
 		//sort_a_lot(e);
 		//recursion_sort_v2(e);
 	print_stacks(e);
 	//while(1);
 	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
-	print_operations(e);
+#ifdef PRINT
+	printf("count: %d\n", size(e->ops));
+#endif
+	//print_operations(e);
 	exit_app(e, 0);
 }

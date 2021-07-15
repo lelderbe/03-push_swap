@@ -65,7 +65,25 @@ static int	make_sorted(t_app *e)
 		//lst = lst->next;
 	}
 	array_sort(e->sorted, e->count);
+	//array_invert_sort(e->sorted, e->count);
 	return (OK);
+}
+
+static void	mutate(t_app *e)
+{
+	t_dlist	*lst;
+	//int		index;
+	//int		value;
+
+	lst = e->a;
+	while (lst)
+	{
+		//value = *(int *)lst->content;
+		//index = get_arr_index(e, *(int *)lst->content);
+		//printf("value: %d, index: %d\n", value, index);
+		*(int *)lst->content = get_arr_index(e, *(int *)lst->content);
+		lst = lst->next;
+	}
 }
 
 int	parse_args(t_app *e, char **argv)
@@ -92,5 +110,6 @@ int	parse_args(t_app *e, char **argv)
 	}
 	if (!make_sorted(e))
 		return (FAIL);
+	mutate(e);
 	return (OK);
 }
