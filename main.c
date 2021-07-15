@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:10:23 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/14 17:30:59 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/15 15:18:13 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ int	main(int argc, char *argv[])
 	else if (size(e->a) == 3)
 		sort3(e);
 	else
-		//sort_greater(e);
+		sort_greater(e);
 		//sort_a_lot(e);
-		recursion_sort_v2(e);
-	//print_stacks(e);
+		//recursion_sort_v2(e);
+	print_stacks(e);
 	//while(1);
 	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
 	print_operations(e);

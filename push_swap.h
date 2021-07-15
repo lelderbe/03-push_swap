@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/14 17:24:09 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/15 15:38:20 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ int		exist(t_dlist *lst, int value);
 int		add(t_dlist **lst, int value);
 int		get(t_dlist *lst, int index);
 int		get_index(t_dlist *lst, int value);
+int		get_gr_index(t_dlist *lst, int value);
 int		size(t_dlist *lst);
 int		get_min_index(t_dlist *lst);
 int		get_max_index(t_dlist *lst);
 int		sorted(t_dlist *lst);
+
+void	rotate(t_app *e, t_dlist *lst, int pos);
+//void	rotate_a(t_app *e, int pos);
+//void	rotate_b(t_app *e, int pos);
+void	move_smallest_top(t_app *e, t_dlist *lst);
 
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);

@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:53:26 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/14 17:27:51 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/15 12:33:50 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,21 @@ int	get(t_dlist *lst, int index)
 }
 
 int	get_index(t_dlist *lst, int value)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		if (*(int *)lst->content == value)
+			return (i);
+		lst = lst->next;
+		i++;
+	}
+	return (-1);
+}
+
+int	get_gr_index(t_dlist *lst, int value)
 {
 	int	i;
 	int	pos;
