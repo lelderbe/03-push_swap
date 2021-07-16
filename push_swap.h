@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/15 15:38:20 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/16 14:24:41 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # define RRB		9
 # define RRR		10
 
-# define PRINT
-
 typedef struct s_app {
 	int			count;
 	t_dlist		*a;
@@ -48,30 +46,29 @@ int		parse_args(t_app *e, char **argv);
 void	print_stacks(t_app *e);
 int		protected_atoi(const char *str, int *value);
 int		get_arr_index(t_app *e, int value);
+int		sorted(t_dlist *lst);
 
-int		exist(t_dlist *lst, int value);
 int		add(t_dlist **lst, int value);
 int		get(t_dlist *lst, int index);
 int		get_index(t_dlist *lst, int value);
 int		get_insert_pos(t_dlist *lst, int value);
-int		size(t_dlist *lst);
 int		get_min_index(t_dlist *lst);
 int		get_max_index(t_dlist *lst);
-int		sorted(t_dlist *lst);
+int		size(t_dlist *lst);
+int		exist(t_dlist *lst, int value);
 
 void	rotate(t_app *e, t_dlist *lst, int pos);
-//void	rotate_a(t_app *e, int pos);
-//void	rotate_b(t_app *e, int pos);
 void	move_smallest_top(t_app *e, t_dlist *lst);
 void	move_all_from_b_back(t_app *e);
+void	insert_from_b(t_app *e);
 
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);
 void	recursion_sort_v3(t_app *e);
 void	sort2(t_app *e);
 void	sort3(t_app *e);
-void	sort_a_lot(t_app *e);
 void	sort_greater(t_app *e);
+void	sort_insertion(t_app *e);
 void	sort_radix(t_app *e);
 
 void	pa(t_app *e);

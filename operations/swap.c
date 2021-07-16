@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:40:38 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/12 13:40:41 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/16 14:30:23 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	sa(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		//ft_putendl_fd("sa", 1);
 		add(&e->ops, SA);
 	if (ft_dlstsize(e->a) < 2)
 		return ;
@@ -37,7 +36,6 @@ void	sb(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
-		//ft_putendl_fd("sb", 1);
 		add(&e->ops, SB);
 	if (ft_dlstsize(e->b) < 2)
 		return ;
@@ -54,7 +52,6 @@ void	sb(t_app *e)
 
 void	ss(t_app *e)
 {
-	//ft_putendl_fd("ss", 1);
 	add(&e->ops, SS);
 	e->print = 0;
 	sa(e);

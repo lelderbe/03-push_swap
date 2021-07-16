@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:18:49 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/14 17:31:21 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/16 12:45:48 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	has_digit(const char *s)
 	return (FAIL);
 }
 
-static void	array_sort(int *arr, int count)
+static void	array_bubble_sort(int *arr, int count)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,6 @@ static void	array_sort(int *arr, int count)
 static int	make_sorted(t_app *e)
 {
 	int		i;
-	//t_dlist	*lst;
 
 	e->sorted = malloc(sizeof(*e->sorted) * e->count);
 	if (!e->sorted)
@@ -58,29 +57,20 @@ static int	make_sorted(t_app *e)
 	i = 0;
 	while (i < e->count)
 	{
-		//e->sorted[i] = *(int *)lst->content;
 		e->sorted[i] = get(e->a, i);
-		//printf("e->sorted[%d] : %d\n", i, e->sorted[i]);
 		i++;
-		//lst = lst->next;
 	}
-	array_sort(e->sorted, e->count);
-	//array_invert_sort(e->sorted, e->count);
+	array_bubble_sort(e->sorted, e->count);
 	return (OK);
 }
 
-static void	mutate(t_app *e)
+static void	recode_data(t_app *e)
 {
 	t_dlist	*lst;
-	//int		index;
-	//int		value;
 
 	lst = e->a;
 	while (lst)
 	{
-		//value = *(int *)lst->content;
-		//index = get_arr_index(e, *(int *)lst->content);
-		//printf("value: %d, index: %d\n", value, index);
 		*(int *)lst->content = get_arr_index(e, *(int *)lst->content);
 		lst = lst->next;
 	}
@@ -110,6 +100,6 @@ int	parse_args(t_app *e, char **argv)
 	}
 	if (!make_sorted(e))
 		return (FAIL);
-	mutate(e);
+	recode_data(e);
 	return (OK);
 }

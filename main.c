@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 11:10:23 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/15 15:18:13 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/16 14:30:00 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,13 @@ void	print_stacks(t_app *e)
 
 void	print_operations(t_app *e)
 {
-	char	*op[] = {"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"};
-	t_dlist	*lst;
+	const char	*op[] = {"pa", "pb", "sa", "sb", "ss", "ra", \
+							"rb", "rr", "rra", "rrb", "rrr"};
+	t_dlist		*lst;
 
 	lst = e->ops;
 	while (lst)
 	{
-		//printf("%s\n", op[*(int *)lst->content]);
-		//printf("*");
-		//fflush(stdout);
 		ft_putendl_fd(op[*(int *)lst->content], 1);
 		lst = lst->next;
 	}
@@ -87,30 +85,20 @@ int	main(int argc, char *argv[])
 	}
 	if (!e->a || sorted(e->a))
 		exit_app(e, 0);
-	//print_sorted(e);
-	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
 	//print_stacks(e);
 	if (size(e->a) == 2)
 		sort2(e);
 	else if (size(e->a) == 3)
 		sort3(e);
-	else if (size(e->a) < 50)
-		//sort_a_lot(e);
-		//sort_greater(e);
-		//recursion_sort(e);
-		//recursion_sort_v2(e);
-		recursion_sort_v3(e);
+	else if (size(e->a) < 40)
+		sort_insertion(e);
+	else if (size(e->a) < 100)
+		sort_greater(e);
 	else
 		sort_radix(e);
-		//sort_greater(e);
-		//sort_a_lot(e);
-		//recursion_sort_v2(e);
-	print_stacks(e);
+	//print_stacks(e);
 	//while(1);
-	//printf("[0]: %d, [1]: %d\n", get(e->a, 0), get(e->a, 1));
-#ifdef PRINT
-	printf("count: %d\n", size(e->ops));
-#endif
-	//print_operations(e);
+	//printf("count: %d\n", size(e->ops));
+	print_operations(e);
 	exit_app(e, 0);
 }

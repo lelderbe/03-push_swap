@@ -6,18 +6,18 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:47:19 by lelderbe          #+#    #+#              #
-#    Updated: 2021/07/15 15:17:04 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/07/16 14:11:04 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c parse.c utils.c list_operations.c
+MAIN_SRCS	= main.c parse.c utils.c list_utils.c list_operations.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
 ALGO_DIR	= algorithms/
-ALGO_SRCS	= operations.c recursion_sort.c sort2.c greater.c radix.c
+ALGO_SRCS	= operations.c recursion_sort.c small_sorts.c insertion_sort.c greater.c radix_sort.c
 ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
 
 SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS}
