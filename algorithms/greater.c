@@ -14,7 +14,7 @@
 
 static int	too_big_in_this_pos(t_app *e, int value, int pos)
 {
-	if ((value - pos) * 100 / e->count > 30)
+	if ((value - pos) * 100 / e->count > 40)
 		return (OK);
 	return (FAIL);
 }
@@ -25,13 +25,14 @@ static void	look_b(t_app *e, int prev, int next)
 	int	i;
 	int	pos;
 
+	//return ;
 	diff = next - prev;
 	if (next - prev == 1 || size(e->b) == 0)
 		return ;
 	i = 1;
 	while (i < diff)
 	{
-		pos = get_index(e->b, prev + i);
+		pos = get_value_pos(e->b, prev + i);
 		if (pos != -1)
 		{
 			rotate(e, e->b, pos);
@@ -44,7 +45,7 @@ static void	look_b(t_app *e, int prev, int next)
 
 static void	move_to_b(t_app *e)
 {
-	rotate(e, e->b, get_insert_pos(e->b, get(e->a, 0)));
+	//rotate(e, e->b, get_insert_pos(e->b, get(e->a, 0)));
 	pb(e);
 }
 
@@ -109,8 +110,15 @@ static void	split(t_app *e)
 
 void	sort_greater(t_app *e)
 {
+	t_push	elem;
+
 	move_smallest_top(e, e->a);
 	split(e);
-	insert_from_b(e);
+	//insert_from_b(e);
+	while (size(e->b))
+	{
+		elem = get_best_elem_from_b_to_a(e);
+		move_element(e, elem);
+	}
 	move_smallest_top(e, e->a);
 }

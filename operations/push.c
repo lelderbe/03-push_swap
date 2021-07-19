@@ -17,6 +17,7 @@ void	pa(t_app *e)
 	t_dlist	*tmp;
 
 	add(&e->ops, PA);
+	e->size_ops++;
 	if (!e->b)
 		return ;
 	tmp = e->b;
@@ -28,6 +29,8 @@ void	pa(t_app *e)
 		e->a->prev = tmp;
 	e->a = tmp;
 	e->a->prev = NULL;
+	e->size_b--;
+	e->size_a++;
 }
 
 void	pb(t_app *e)
@@ -35,6 +38,7 @@ void	pb(t_app *e)
 	t_dlist	*tmp;
 
 	add(&e->ops, PB);
+	e->size_ops++;
 	if (!e->a)
 		return ;
 	tmp = e->a;
@@ -46,4 +50,6 @@ void	pb(t_app *e)
 		e->b->prev = tmp;
 	e->b = tmp;
 	e->b->prev = NULL;
+	e->size_a--;
+	e->size_b++;
 }

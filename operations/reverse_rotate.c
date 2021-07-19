@@ -17,7 +17,10 @@ void	rra(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
+	{
 		add(&e->ops, RRA);
+		e->size_ops++;
+	}
 	if (ft_dlstsize(e->a) < 2)
 		return ;
 	tmp = e->a;
@@ -34,7 +37,10 @@ void	rrb(t_app *e)
 	t_dlist	*tmp;
 
 	if (e->print)
+	{
 		add(&e->ops, RRB);
+		e->size_ops++;
+	}
 	if (ft_dlstsize(e->b) < 2)
 		return ;
 	tmp = e->b;
@@ -49,6 +55,7 @@ void	rrb(t_app *e)
 void	rrr(t_app *e)
 {
 	add(&e->ops, RRR);
+	e->size_ops++;
 	e->print = 0;
 	rra(e);
 	e->print = 0;

@@ -57,7 +57,7 @@ static int	make_sorted(t_app *e)
 	i = 0;
 	while (i < e->count)
 	{
-		e->sorted[i] = get(e->a, i);
+		e->sorted[i] = get(e->in, i);
 		i++;
 	}
 	array_bubble_sort(e->sorted, e->count);
@@ -68,10 +68,10 @@ static void	recode_data(t_app *e)
 {
 	t_dlist	*lst;
 
-	lst = e->a;
+	lst = e->in;
 	while (lst)
 	{
-		*(int *)lst->content = get_arr_index(e, *(int *)lst->content);
+		*(int *)lst->content = get_sorted_index(e, *(int *)lst->content);
 		lst = lst->next;
 	}
 }
@@ -89,8 +89,8 @@ int	parse_args(t_app *e, char **argv)
 		if (!(str
 				&& has_digit(str)
 				&& protected_atoi(str, &value)
-				&& !exist(e->a, value)
-				&& add(&e->a, value)))
+				&& !exist(e->in, value)
+				&& add(&e->in, value)))
 		{
 			free(str);
 			return (FAIL);

@@ -12,32 +12,23 @@
 
 #include "push_swap.h"
 
-void	rotate(t_app *e, t_dlist *lst, int pos)
+void	calc_cost(t_push *e, int rva, int rvb)
 {
-	int	op;
-
-	op = RA;
-	if (lst == e->b)
-		op = RB;
-	if (pos > size(lst) / 2)
-	{
-		op = RRA;
-		if (lst == e->b)
-			op = RRB;
-		pos = size(lst) - pos;
-	}
-	while (pos > 0)
-	{
-		if (op == RA)
-			ra(e);
-		else if (op == RB)
-			rb(e);
-		else if (op == RRA)
-			rra(e);
-		else
-			rrb(e);
-		pos--;
-	}
+	if (rva < 0)
+		e->rra = -rva;
+	else
+		e->ra = rva;
+	if (rvb < 0)
+		e->rrb = -rvb;
+	else
+		e->rb = rvb;
+	e->rr = min(e->ra, e->rb);
+	e->ra = e->ra - e->rr;
+	e->rb = e->rb - e->rr;
+	e->rrr = min(e->rra, e->rrb);
+	e->rra = e->rra - e->rrr;
+	e->rrb = e->rrb - e->rrr;
+	e->cost = e->pa + e->pb + e->ra + e->rb + e->rr + e->rra + e->rrb + e->rrr;
 }
 
 void	insert_from_b(t_app *e)
@@ -46,16 +37,8 @@ void	insert_from_b(t_app *e)
 
 	while (size(e->b) > 0)
 	{
-		pos = get_insert_pos(e->a, get(e->b, 0));
+		pos = get_asc_insert_pos(e->a, get(e->b, 0));
 		rotate(e, e->a, pos);
 		pa(e);
 	}
-}
-
-void	move_smallest_top(t_app *e, t_dlist *lst)
-{
-	int	pos;
-
-	pos = get_min_index(lst);
-	rotate(e, lst, pos);
 }

@@ -10,17 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c parse.c utils.c list_utils.c list_operations.c
+MAIN_SRCS	= main.c parse.c utils.c list_utils.c list_operations.c print.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
 OPER_SRCS	:= $(addprefix ${OPER_DIR}, ${OPER_SRCS})
 
 ALGO_DIR	= algorithms/
-ALGO_SRCS	= operations.c recursion_sort.c small_sorts.c insertion_sort.c greater.c radix_sort.c
+ALGO_SRCS	= recursion.c small_sorts.c insertion.c greater.c radix.c
 ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
 
-SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS}
+ALGOC_DIR	= algorithms/common/
+ALGOC_SRCS	= gets.c move.c rotate.c operations.c
+ALGOC_SRCS	:= $(addprefix ${ALGOC_DIR}, ${ALGOC_SRCS})
+
+SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS} ${ALGOC_SRCS}
 
 HEADERS		= push_swap.h
 

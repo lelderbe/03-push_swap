@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-int	get(t_dlist *lst, int index)
+int	get(t_dlist *lst, int pos)
 {
 	int	i;
 
 	i = 0;
-	while (lst && i < index)
+	while (lst && i < pos)
 	{
 		lst = lst->next;
 		i++;
@@ -25,7 +25,7 @@ int	get(t_dlist *lst, int index)
 	return (*(int *)lst->content);
 }
 
-int	get_index(t_dlist *lst, int value)
+int	get_value_pos(t_dlist *lst, int value)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ int	get_index(t_dlist *lst, int value)
 	return (-1);
 }
 
-int	get_insert_pos(t_dlist *lst, int value)
+int	get_asc_insert_pos(t_dlist *lst, int value)
 {
 	int	i;
 	int	pos;
@@ -69,14 +69,43 @@ int	get_insert_pos(t_dlist *lst, int value)
 	return (pos);
 }
 
-int	get_max_index(t_dlist *lst)
+int	get_desc_insert_pos(t_dlist *lst, int value)
+{
+	int	i;
+	int	pos;
+	int	curr;
+	int	diff;
+
+	pos = -1;
+	diff = -1;
+	i = 0;
+	while (lst)
+	{
+		curr = *(int *)lst->content;
+		if (curr < value)
+		{
+			if (diff == -1 || diff > value - curr)
+			{
+				diff = value - curr;
+				pos = i;
+			}
+		}
+		if (pos == -1 && lst->prev && *(int *)lst->prev->content < curr)
+			pos = i;
+		lst = lst->next;
+		i++;
+	}
+	return (pos);
+}
+
+int	get_max_value_pos(t_dlist *lst)
 {
 	int	value;
-	int	index;
+	int	pos;
 	int	i;
 
 	value = *(int *)lst->content;
-	index = 0;
+	pos = 0;
 	lst = lst->next;
 	i = 1;
 	while (lst)
@@ -84,22 +113,22 @@ int	get_max_index(t_dlist *lst)
 		if (*(int *)lst->content > value)
 		{
 			value = *(int *)lst->content;
-			index = i;
+			pos = i;
 		}
 		lst = lst->next;
 		i++;
 	}
-	return (index);
+	return (pos);
 }
 
-int	get_min_index(t_dlist *lst)
+int	get_min_value_pos(t_dlist *lst)
 {
 	int	value;
-	int	index;
+	int	pos;
 	int	i;
 
 	value = *(int *)lst->content;
-	index = 0;
+	pos = 0;
 	lst = lst->next;
 	i = 1;
 	while (lst)
@@ -107,10 +136,10 @@ int	get_min_index(t_dlist *lst)
 		if (*(int *)lst->content < value)
 		{
 			value = *(int *)lst->content;
-			index = i;
+			pos = i;
 		}
 		lst = lst->next;
 		i++;
 	}
-	return (index);
+	return (pos);
 }

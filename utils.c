@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+int	make_copy(t_dlist *original, t_dlist **copy)
+{
+	while (original)
+	{
+		//printf("%d ", *(int *)original->content);
+		if (!add(copy, *(int *)original->content))
+			return (FAIL);
+		original = original->next;
+	}
+	return (OK);
+}
+
 static int	is_space(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\t'
@@ -49,18 +61,7 @@ int	protected_atoi(const char *str, int *value)
 	return (OK);
 }
 
-int	sorted(t_dlist *lst)
-{
-	while (lst)
-	{
-		if (lst->prev && (*(int *)lst->prev->content > *(int *)lst->content))
-			return (FAIL);
-		lst = lst->next;
-	}
-	return (OK);
-}
-
-int	get_arr_index(t_app *e, int value)
+int	get_sorted_index(t_app *e, int value)
 {
 	int	i;
 
@@ -72,4 +73,27 @@ int	get_arr_index(t_app *e, int value)
 		i++;
 	}
 	return (-1);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+void	reset(t_app *e)
+{
+	ft_dlstclear(&e->a, free);
+	ft_dlstclear(&e->b, free);
+	ft_dlstclear(&e->ops, free);
+	e->a = NULL;
+	e->b = NULL;
+	e->ops = NULL;
+	e->size_a = 0;
+	e->size_b = 0;
+	e->size_ops = 0;
+	if (!make_copy(e->in, &e->a))
+		exit_app(e, 1);
+	e->size_a = e->count;
 }

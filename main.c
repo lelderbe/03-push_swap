@@ -20,57 +20,35 @@ static void	init(t_app **e, int count)
 	ft_bzero(*e, sizeof(**e));
 	(*e)->print = 1;
 	(*e)->count = count;
+	(*e)->size_a = count;
 }
 
 int	exit_app(t_app *e, int code)
 {
+	if (code != 0)
+		ft_putendl_fd("Error", 2);
+	ft_dlstclear(&e->in, free);
 	ft_dlstclear(&e->b, free);
 	ft_dlstclear(&e->a, free);
 	ft_dlstclear(&e->ops, free);
 	free(e->sorted);
+	//free(e); //?
 	exit(code);
 }
 
-static void	print_stack(t_dlist *lst)
+static void	test(t_app *e, char *desc)
 {
-	while (lst)
-	{
-		printf("%d ", *(int *)lst->content);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-
-void	print_stacks(t_app *e)
-{
-	printf("a: "), print_stack(e->a), printf("b: "), print_stack(e->b);
-}
-
-void	print_operations(t_app *e)
-{
-	const char	*op[] = {"pa", "pb", "sa", "sb", "ss", "ra", \
-							"rb", "rr", "rra", "rrb", "rrr"};
-	t_dlist		*lst;
-
-	lst = e->ops;
-	while (lst)
-	{
-		ft_putendl_fd(op[*(int *)lst->content], 1);
-		lst = lst->next;
-	}
-}
-
-void	print_sorted(t_app *e)
-{
-	int	i;
-
-	i = 0;
-	while (i < e->count)
-	{
-		printf("%d ", e->sorted[i]);
-		i++;
-	}
-	printf("\n");
+	sort_insertion(e);
+	printf("%s v1 count: %d\n", desc, size(e->ops));
+	reset(e);
+	insertion_sort_v3(e);
+	printf("%s v3 count: %d\n", desc, size(e->ops));
+	reset(e);
+	sort_greater(e);
+	printf("%s gt count: %d\n", desc, size(e->ops));
+	reset(e);
+	sort_radix(e);
+	printf("%s rx count: %d\n", desc, size(e->ops));
 }
 
 int	main(int argc, char *argv[])
@@ -78,11 +56,8 @@ int	main(int argc, char *argv[])
 	t_app	*e;
 
 	init(&e, argc - 1);
-	if (!parse_args(e, argv + 1))
-	{
-		ft_putendl_fd("Error", 2);
+	if (!parse_args(e, argv + 1) || !make_copy(e->in, &e->a))
 		exit_app(e, 1);
-	}
 	if (!e->a || sorted(e->a))
 		exit_app(e, 0);
 	//print_stacks(e);
@@ -90,15 +65,22 @@ int	main(int argc, char *argv[])
 		sort2(e);
 	else if (size(e->a) == 3)
 		sort3(e);
+	else if (size(e->a) < 10)
+		test(e, "<10");
+		//sort_insertion(e);
 	else if (size(e->a) < 40)
-		sort_insertion(e);
+		test(e, "<40");
 	else if (size(e->a) < 100)
-		sort_greater(e);
+		test(e, "<100");
+	else if (size(e->a) < 500)
+		test(e, "<500");
+	else if (size(e->a) < 1000)
+		test(e, "<1000");
 	else
-		sort_radix(e);
+		test(e, ">1000");
 	//print_stacks(e);
 	//while(1);
-	//printf("count: %d\n", size(e->ops));
-	print_operations(e);
+	printf("smalls count: %d\n", size(e->ops));
+	//print_operations(e);
 	exit_app(e, 0);
 }

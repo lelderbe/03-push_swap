@@ -20,12 +20,12 @@ void	sort2(t_app *e)
 
 void	sort3(t_app *e)
 {
-	int	index;
+	int	pos;
 
-	index = get_max_index(e->a);
-	if (index == 0)
+	pos = get_max_value_pos(e->a);
+	if (pos == 0)
 		ra(e);
-	if (index == 1)
+	else if (pos == 1)
 		rra(e);
 	sort2(e);
 }

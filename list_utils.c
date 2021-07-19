@@ -53,3 +53,14 @@ int	size(t_dlist *lst)
 {
 	return (ft_dlstsize(lst));
 }
+
+int	sorted(t_dlist *lst)
+{
+	while (lst)
+	{
+		if (lst->prev && (*(int *)lst->prev->content > *(int *)lst->content))
+			return (FAIL);
+		lst = lst->next;
+	}
+	return (OK);
+}
