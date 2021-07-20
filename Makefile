@@ -6,11 +6,11 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:47:19 by lelderbe          #+#    #+#              #
-#    Updated: 2021/07/16 14:11:04 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/07/20 14:04:22 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAIN_SRCS	= main.c parse.c utils.c list_utils.c list_operations.c print.c
+MAIN_SRCS	= main.c parse.c
 
 OPER_DIR	= operations/
 OPER_SRCS	= swap.c push.c rotate.c reverse_rotate.c
@@ -21,10 +21,14 @@ ALGO_SRCS	= recursion.c small_sorts.c insertion.c greater.c radix.c
 ALGO_SRCS	:= $(addprefix ${ALGO_DIR}, ${ALGO_SRCS})
 
 ALGOC_DIR	= algorithms/common/
-ALGOC_SRCS	= gets.c move.c rotate.c operations.c
+ALGOC_SRCS	= gets_p1.c gets_p2.c move.c rotate.c unsorted.c
 ALGOC_SRCS	:= $(addprefix ${ALGOC_DIR}, ${ALGOC_SRCS})
 
-SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS} ${ALGOC_SRCS}
+UTILS_DIR	= utils/
+UTILS_SRCS	= list_utils.c app_utils.c print.c
+UTILS_SRCS	:= $(addprefix ${UTILS_DIR}, ${UTILS_SRCS})
+
+SRCS		= ${MAIN_SRCS} ${OPER_SRCS} ${ALGO_SRCS} ${ALGOC_SRCS} ${UTILS_SRCS}
 
 HEADERS		= push_swap.h
 

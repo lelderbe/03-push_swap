@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   app_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 11:22:21 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/16 12:57:23 by lelderbe         ###   ########.fr       */
+/*   Created: 2021/07/20 14:04:29 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/20 14:04:35 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	make_copy(t_dlist *original, t_dlist **copy)
-{
-	while (original)
-	{
-		//printf("%d ", *(int *)original->content);
-		if (!add(copy, *(int *)original->content))
-			return (FAIL);
-		original = original->next;
-	}
-	return (OK);
-}
 
 static int	is_space(char c)
 {
@@ -82,18 +70,13 @@ int	min(int a, int b)
 	return (b);
 }
 
-void	reset(t_app *e)
+int	make_stack_copy(t_dlist *original, t_dlist **copy)
 {
-	ft_dlstclear(&e->a, free);
-	ft_dlstclear(&e->b, free);
-	ft_dlstclear(&e->ops, free);
-	e->a = NULL;
-	e->b = NULL;
-	e->ops = NULL;
-	e->size_a = 0;
-	e->size_b = 0;
-	e->size_ops = 0;
-	if (!make_copy(e->in, &e->a))
-		exit_app(e, 1);
-	e->size_a = e->count;
+	while (original)
+	{
+		if (!add(copy, *(int *)original->content))
+			return (FAIL);
+		original = original->next;
+	}
+	return (OK);
 }

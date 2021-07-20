@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/16 14:24:41 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 14:05:13 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define FAIL		0
 # define OK			1
 
+# define PRINT_OPS	1
+
 # define PA			0
 # define PB			1
 # define SA			2
@@ -33,7 +35,7 @@
 # define RRB		9
 # define RRR		10
 
-typedef struct	s_app {
+typedef struct s_app {
 	int			count;
 	t_dlist		*in;
 	t_dlist		*a;
@@ -46,7 +48,7 @@ typedef struct	s_app {
 	int			size_ops;
 }				t_app;
 
-typedef struct	s_push {
+typedef struct s_push {
 	int			cost;
 	int			pa;
 	int			pb;
@@ -71,7 +73,7 @@ void	reset(t_app *e);
 
 int		get_sorted_index(t_app *e, int value);
 int		parse_args(t_app *e, char **argv);
-int		make_copy(t_dlist *original, t_dlist **copy);
+int		make_stack_copy(t_dlist *original, t_dlist **copy);
 
 int		add(t_dlist **lst, int value);
 int		size(t_dlist *lst);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_operations.c                                  :+:      :+:    :+:   */
+/*   gets_p2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 15:53:26 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/16 12:50:27 by lelderbe         ###   ########.fr       */
+/*   Created: 2021/07/20 13:32:46 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/20 13:33:49 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,52 +92,6 @@ int	get_desc_insert_pos(t_dlist *lst, int value)
 		}
 		if (pos == -1 && lst->prev && *(int *)lst->prev->content < curr)
 			pos = i;
-		lst = lst->next;
-		i++;
-	}
-	return (pos);
-}
-
-int	get_max_value_pos(t_dlist *lst)
-{
-	int	value;
-	int	pos;
-	int	i;
-
-	value = *(int *)lst->content;
-	pos = 0;
-	lst = lst->next;
-	i = 1;
-	while (lst)
-	{
-		if (*(int *)lst->content > value)
-		{
-			value = *(int *)lst->content;
-			pos = i;
-		}
-		lst = lst->next;
-		i++;
-	}
-	return (pos);
-}
-
-int	get_min_value_pos(t_dlist *lst)
-{
-	int	value;
-	int	pos;
-	int	i;
-
-	value = *(int *)lst->content;
-	pos = 0;
-	lst = lst->next;
-	i = 1;
-	while (lst)
-	{
-		if (*(int *)lst->content < value)
-		{
-			value = *(int *)lst->content;
-			pos = i;
-		}
 		lst = lst->next;
 		i++;
 	}

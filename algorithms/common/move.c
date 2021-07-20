@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 10:27:15 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/20 13:17:51 by lelderbe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	move_biggest_top(t_app *e, t_dlist *lst)
 {
-	int pos;
+	int	pos;
 
 	pos = get_max_value_pos(lst);
 	rotate(e, lst, pos);
@@ -10,7 +22,7 @@ void	move_biggest_top(t_app *e, t_dlist *lst)
 
 void	move_smallest_top(t_app *e, t_dlist *lst)
 {
-	int pos;
+	int	pos;
 
 	pos = get_min_value_pos(lst);
 	rotate(e, lst, pos);
@@ -30,10 +42,9 @@ void	move_all_from_b_to_a(t_app *e)
 
 void	move_element(t_app *e, t_push elem)
 {
-	//print_stacks(e);
 	if (elem.cost <= 0)
 	{
-		printf("Error: ELEM <= 0 !!!\n");
+		ft_putendl_fd("Error: ELEM <= 0 !!!", 2);
 		return ;
 	}
 	while (elem.rr--)
@@ -52,5 +63,4 @@ void	move_element(t_app *e, t_push elem)
 		pa(e);
 	else
 		pb(e);
-	//print_stacks(e);
 }

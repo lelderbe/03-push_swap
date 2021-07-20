@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:33:12 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/16 13:42:57 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 11:05:23 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	look_b(t_app *e, int prev, int next)
 	int	i;
 	int	pos;
 
-	//return ;
 	diff = next - prev;
 	if (next - prev == 1 || size(e->b) == 0)
 		return ;
@@ -43,10 +42,28 @@ static void	look_b(t_app *e, int prev, int next)
 	}
 }
 
-static void	move_to_b(t_app *e)
+static void	check_curr_gt_prev(t_app *e, int *pos, int prev)
 {
-	//rotate(e, e->b, get_insert_pos(e->b, get(e->a, 0)));
-	pb(e);
+	int	curr;
+	int	next;
+
+	curr = get(e->a, 0);
+	next = get(e->a, 1);
+	if (curr < next)
+		ra(e);
+	else if (next > prev)
+	{
+		sa(e);
+		look_b(e, prev, get(e->a, 0));
+		ra(e);
+	}
+	else if (next > get(e->a, size(e->a) - 2))
+	{
+		sa(e);
+		*pos = *pos - 1;
+	}
+	else
+		ra(e);
 }
 
 static void	split(t_app *e)
@@ -54,56 +71,26 @@ static void	split(t_app *e)
 	int	pos;
 	int	prev;
 	int	curr;
-	int	next;
 
-	prev = get(e->a, 0);
 	ra(e);
 	pos = 0;
 	while (pos < e->count - 1)
 	{
 		prev = get(e->a, size(e->a) - 1);
 		curr = get(e->a, 0);
-		next = get(e->a, 1);
 		if (too_big_in_this_pos(e, curr, pos))
-			move_to_b(e);
+			pb(e);
 		else if (curr > prev)
+			check_curr_gt_prev(e, &pos, prev);
+		else if (curr > get(e->a, size(e->a) - 2))
 		{
-			if (curr > next)
-			{
-				if (next > prev)
-				{
-					sa(e);
-					look_b(e, prev, get(e->a, 0));
-					ra(e);
-				}
-				else
-				{
-					if (next > get(e->a, size(e->a) - 2))
-					{
-						sa(e);
-						pos--;
-					}
-					else
-					{
-						ra(e);
-					}
-				}
-			}
-			else
-				ra(e);
+			rra(e);
+			sa(e);
+			ra(e);
+			pos--;
 		}
 		else
-		{
-			if (curr > get(e->a, size(e->a) - 2))
-			{
-				rra(e);
-				sa(e);
-				ra(e);
-				pos--;
-			}
-			else
-				move_to_b(e);
-		}
+			pb(e);
 		pos++;
 	}
 }
@@ -114,7 +101,6 @@ void	sort_greater(t_app *e)
 
 	move_smallest_top(e, e->a);
 	split(e);
-	//insert_from_b(e);
 	while (size(e->b))
 	{
 		elem = get_best_elem_from_b_to_a(e);
