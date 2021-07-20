@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:18:49 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 16:14:02 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 20:13:34 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,18 @@ static int	make_sorted(t_app *e)
 	return (OK);
 }
 
-static int	add_value(t_app *e, char *s)
+static int	add_value(t_app *e, char *str)
 {
 	int		value;
-	char	*str;
 
-	str = ft_strtrim(s, " ");
 	if (!(str
 			&& has_digit(str)
 			&& protected_atoi(str, &value)
 			&& !exist(e->in, value)
 			&& add(&e->in, value)))
 	{
-		free(str);
 		return (FAIL);
 	}
-	free(str);
 	return (OK);
 }
 

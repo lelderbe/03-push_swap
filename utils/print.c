@@ -54,7 +54,7 @@ void	print_operations(t_app *e)
 	lst = e->ops;
 	while (lst)
 	{
-		ft_putendl_fd((char *)op[*(int *)lst->content], 1);
+		ft_putendl_fd((char *)op[*(int *)lst->content], STDOUT_FILENO);
 		lst = lst->next;
 	}
 }

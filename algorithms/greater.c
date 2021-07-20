@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:33:12 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 11:05:23 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:29:01 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	split(t_app *e)
 	}
 }
 
-void	sort_greater(t_app *e)
+void	greater_sort(t_app *e)
 {
 	t_push	elem;
 

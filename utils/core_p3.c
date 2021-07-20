@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*   core_p3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/16 13:00:20 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 16:28:48 by lelderbe         ###   ########.fr       */
+/*   Created: 2021/07/20 17:45:58 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/07/20 17:46:22 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	radix_sort(t_app *e)
+void	reset(t_app *e)
 {
-	int	i;
-	int	mask;
-
-	mask = 1;
-	while (!sorted(e->a))
-	{
-		i = 0;
-		while (i < e->count)
-		{
-			if (!(get(e->a, 0) & mask))
-				pb(e);
-			else
-				ra(e);
-			i++;
-		}
-		move_all_from_b_to_a(e);
-		mask = mask << 1;
-	}
+	ft_dlstclear(&e->a, free);
+	ft_dlstclear(&e->b, free);
+	ft_dlstclear(&e->ops, free);
+	e->a = NULL;
+	e->b = NULL;
+	e->ops = NULL;
+	if (!make_stack_copy(e->in, &e->a))
+		exit_app(e, 1);
+	e->size_a = e->count;
+	e->size_b = 0;
+	e->size_ops = 0;
 }

@@ -6,11 +6,27 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 14:22:55 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 16:13:50 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 17:37:11 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	exit_app(t_app *e, int code)
+{
+	if (code != 0)
+		ft_putendl_fd("Error", STDERR_FILENO);
+	if (e)
+	{
+		ft_dlstclear(&e->in, free);
+		ft_dlstclear(&e->b, free);
+		ft_dlstclear(&e->a, free);
+		ft_dlstclear(&e->ops, free);
+		free(e->sorted);
+		free(e);
+	}
+	exit(code);
+}
 
 int	has_digit(const char *s)
 {

@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/16 13:00:20 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 16:28:48 by lelderbe         ###   ########.fr       */
+/*   Created: 2020/11/13 17:14:05 by lelderbe          #+#    #+#             */
+/*   Updated: 2021/01/17 15:13:11 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <unistd.h>
+# include <stdlib.h>
 
-void	radix_sort(t_app *e)
-{
-	int	i;
-	int	mask;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
 
-	mask = 1;
-	while (!sorted(e->a))
-	{
-		i = 0;
-		while (i < e->count)
-		{
-			if (!(get(e->a, 0) & mask))
-				pb(e);
-			else
-				ra(e);
-			i++;
-		}
-		move_all_from_b_to_a(e);
-		mask = mask << 1;
-	}
-}
+int				get_next_line(int fd, char **line);
+size_t			ft_strlen(const char *s);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strchr(const char *s, int c);
+
+#endif

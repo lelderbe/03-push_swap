@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 16:18:40 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 20:34:51 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include <stdio.h>
+# include "get_next_line.h"
 # include <limits.h>
 
 # define APP_NAME	"push_swap"
 # define FAIL		0
 # define OK			1
 
-# define PR_OPS		0
-# define PR_STACKS	1
+# define PR_OPS		1
+# define PR_STACKS	0
 
 # define PA			0
 # define PB			1
@@ -61,6 +61,8 @@ typedef struct s_push {
 	int			rrb;
 	int			rrr;
 }				t_push;
+
+typedef void (*t_op)(t_app*);
 
 /*	main functions  */
 
@@ -103,17 +105,18 @@ t_push	get_best_elem_from_a_to_b(t_app *e);
 t_push	get_best_elem_from_b_to_a(t_app *e);
 t_push	get_best_elem_from_a_to_b_pack(t_app *e, int pack_n, int pack_size);
 
-/*	common move operations  */
+/*	common move, rotate operations  */
 
 void	move_all_from_b_to_a(t_app *e);
 void	move_smallest_to_b(t_app *e);
 void	move_biggest_top(t_app *e, t_dlist *lst);
 void	move_smallest_top(t_app *e, t_dlist *lst);
 void	move_element(t_app *e, t_push elem);
-void	calc_cost(t_push *e, int rva, int rvb);
 int		rotate_value(t_dlist *lst, int pos);
 void	rotate(t_app *e, t_dlist *lst, int pos);
+
 void	insert_from_b(t_app *e);
+void	calc_cost(t_push *e, int rva, int rvb);
 
 /*	algorithms  */
 
@@ -122,11 +125,11 @@ void	sort3(t_app *e);
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);
 void	recursion_sort_v3(t_app *e);
-void	sort_insertion(t_app *e);
+void	insertion_sort(t_app *e);
 void	insertion_sort_v2(t_app *e);
 void	insertion_sort_v3(t_app *e);
-void	sort_greater(t_app *e);
-void	sort_radix(t_app *e);
+void	greater_sort(t_app *e);
+void	radix_sort(t_app *e);
 
 /*	stack operations  */
 
