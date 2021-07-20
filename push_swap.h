@@ -6,7 +6,7 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:19:01 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/20 14:05:13 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:18:40 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # define FAIL		0
 # define OK			1
 
-# define PRINT_OPS	1
+# define PR_OPS		0
+# define PR_STACKS	1
 
 # define PA			0
 # define PB			1
@@ -48,6 +49,7 @@ typedef struct s_app {
 	int			size_ops;
 }				t_app;
 
+/*	element for move  */
 typedef struct s_push {
 	int			cost;
 	int			pa;
@@ -60,24 +62,36 @@ typedef struct s_push {
 	int			rrr;
 }				t_push;
 
+/*	main functions  */
+
 int		exit_app(t_app *e, int code);
+void	reset(t_app *e);
+int		parse_args(t_app *e, char **argv);
+
+/*	print utils  */
 
 void	print_sorted(t_app *e);
 void	print_stacks(t_app *e);
 void	print_operations(t_app *e);
 
-int		protected_atoi(const char *str, int *value);
-int		min(int a, int b);
-int		sorted(t_dlist *lst);
-void	reset(t_app *e);
+/*	core utils  */
 
+int		protected_atoi(const char *str, int *value);
 int		get_sorted_index(t_app *e, int value);
-int		parse_args(t_app *e, char **argv);
+int		min(int a, int b);
 int		make_stack_copy(t_dlist *original, t_dlist **copy);
+int		has_digit(const char *s);
+void	free_split(char **s);
+void	array_bubble_sort(int *arr, int count);
+
+/*	list utils  */
 
 int		add(t_dlist **lst, int value);
-int		size(t_dlist *lst);
 int		exist(t_dlist *lst, int value);
+int		size(t_dlist *lst);
+int		sorted(t_dlist *lst);
+
+/*	common get operations  */
 
 int		get(t_dlist *lst, int index);
 int		get_value_pos(t_dlist *lst, int value);
@@ -85,6 +99,11 @@ int		get_asc_insert_pos(t_dlist *lst, int value);
 int		get_desc_insert_pos(t_dlist *lst, int value);
 int		get_min_value_pos(t_dlist *lst);
 int		get_max_value_pos(t_dlist *lst);
+t_push	get_best_elem_from_a_to_b(t_app *e);
+t_push	get_best_elem_from_b_to_a(t_app *e);
+t_push	get_best_elem_from_a_to_b_pack(t_app *e, int pack_n, int pack_size);
+
+/*	common move operations  */
 
 void	move_all_from_b_to_a(t_app *e);
 void	move_smallest_to_b(t_app *e);
@@ -95,21 +114,21 @@ void	calc_cost(t_push *e, int rva, int rvb);
 int		rotate_value(t_dlist *lst, int pos);
 void	rotate(t_app *e, t_dlist *lst, int pos);
 void	insert_from_b(t_app *e);
-t_push	get_best_elem_for_push(t_app *e, t_dlist *lst1, t_dlist *lst2);
-t_push	get_best_elem_from_a_to_b(t_app *e);
-t_push	get_best_elem_from_b_to_a(t_app *e);
-t_push	get_best_elem_from_a_to_b_pack(t_app *e, int pack_n, int pack_size);
 
+/*	algorithms  */
+
+void	sort2(t_app *e);
+void	sort3(t_app *e);
 void	recursion_sort(t_app *e);
 void	recursion_sort_v2(t_app *e);
 void	recursion_sort_v3(t_app *e);
-void	sort2(t_app *e);
-void	sort3(t_app *e);
-void	sort_greater(t_app *e);
 void	sort_insertion(t_app *e);
-void	sort_radix(t_app *e);
 void	insertion_sort_v2(t_app *e);
 void	insertion_sort_v3(t_app *e);
+void	sort_greater(t_app *e);
+void	sort_radix(t_app *e);
+
+/*	stack operations  */
 
 void	pa(t_app *e);
 void	pb(t_app *e);

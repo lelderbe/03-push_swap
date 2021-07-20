@@ -6,46 +6,11 @@
 /*   By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:18:49 by lelderbe          #+#    #+#             */
-/*   Updated: 2021/07/16 12:45:48 by lelderbe         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:14:02 by lelderbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	has_digit(const char *s)
-{
-	while (*s)
-	{
-		if (ft_isdigit(*s))
-			return (OK);
-		s++;
-	}
-	return (FAIL);
-}
-
-static void	array_bubble_sort(int *arr, int count)
-{
-	int	i;
-	int	j;
-	int	tmp;
-
-	i = 0;
-	while (i < count)
-	{
-		j = 0;
-		while (j < count - 1 - i)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				tmp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 static int	make_sorted(t_app *e)
 {
@@ -64,6 +29,52 @@ static int	make_sorted(t_app *e)
 	return (OK);
 }
 
+static int	add_value(t_app *e, char *s)
+{
+	int		value;
+	char	*str;
+
+	str = ft_strtrim(s, " ");
+	if (!(str
+			&& has_digit(str)
+			&& protected_atoi(str, &value)
+			&& !exist(e->in, value)
+			&& add(&e->in, value)))
+	{
+		free(str);
+		return (FAIL);
+	}
+	free(str);
+	return (OK);
+}
+
+static int	parse_split(t_app *e, char **argv)
+{
+	int		i;
+	char	**parts;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (ft_strchr(argv[i], ' '))
+		{
+			parts = ft_split(argv[i], ' ');
+			if (!parts)
+				return (FAIL);
+			if (!parse_split(e, parts))
+			{
+				free_split(parts);
+				return (FAIL);
+			}
+			free_split(parts);
+		}
+		else if (!add_value(e, argv[i]))
+			return (FAIL);
+		i++;
+	}
+	return (OK);
+}
+
 static void	recode_data(t_app *e)
 {
 	t_dlist	*lst;
@@ -78,28 +89,14 @@ static void	recode_data(t_app *e)
 
 int	parse_args(t_app *e, char **argv)
 {
-	int		i;
-	int		value;
-	char	*str;
-
-	i = 0;
-	while (i < e->count)
-	{
-		str = ft_strtrim(argv[i], " ");
-		if (!(str
-				&& has_digit(str)
-				&& protected_atoi(str, &value)
-				&& !exist(e->in, value)
-				&& add(&e->in, value)))
-		{
-			free(str);
-			return (FAIL);
-		}
-		free(str);
-		i++;
-	}
+	if (!parse_split(e, argv))
+		return (FAIL);
+	e->count = size(e->in);
 	if (!make_sorted(e))
 		return (FAIL);
 	recode_data(e);
+	if (!make_stack_copy(e->in, &e->a))
+		return (FAIL);
+	e->size_a = e->count;
 	return (OK);
 }
